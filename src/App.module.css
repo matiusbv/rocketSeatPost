@@ -1,0 +1,12 @@
+.wrapper {
+    max-width: 70rem;
+    margin: 2rem auto; /*centraliza tudo na tela */
+    padding: 0 1rem;/*da uma margem no conteúdo ao diminui-lo */
+
+    display: grid;
+    grid-template-columns: 256px 1fr; /*1fr indica tamanho flexível*/
+    gap: 2rem; /*gap espaçamento entre as colunas*/
+    align-items: flex-start; /*Flex-start força o conteúdo ficar no topo*/
+}
+
+
