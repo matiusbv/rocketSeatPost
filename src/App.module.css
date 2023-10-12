@@ -10,3 +10,12 @@
 }
 
 
+/*quando a tela for menor que 768px */
+@media (max-width: 768px) {
+    html { /*faz com que a fonte diminua ou aumente de acordo com o dispositivo*/
+        font-size: 87.5%;
+    }
+    .wrapper {
+        grid-template-columns: 1fr; /*irá ocupar apenas uma coluna*/
+    }
+}
