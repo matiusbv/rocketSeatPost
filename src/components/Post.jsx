@@ -27,15 +27,26 @@ export function Post({author, publishedAt, content}) {
         setComments([...comments, newCommentText])
         setNewCommentText('')
     }
-
+    //tem que colocar o setCustomValidity com isso o react sabe que o usuário digitou alguma coisa
     function handleNewCommentChage() {
+        event.target.setCustomValidity('')
         setNewCommentText(event.target.value)
     }
 
-    function deleteComment(comment) {
-        console.log(`Deletar comentário ${comment}`)
+    //Função que usa uma propriedades do js(setCustomValidity) para mudar o texto  
+    function handleNewCommentInvalid() {
+        event.target.setCustomValidity('Esse campo é obrigatório!')
     }
 
+    function deleteComment(commentToDelete) {
+        const commentWithoutDeleteOne = comments.filter(comment => {
+            return comment !== commentToDelete
+        })
+        setComments(commentWithoutDeleteOne);
+    }
+
+    //constante para verificar se o novo comentário está vazio
+   const isNewCommentEmpty = newCommentText.length === 0; 
     return (
         <article className={styles.post}>
             <header>
@@ -70,10 +81,15 @@ export function Post({author, publishedAt, content}) {
                     placeholder="Deixe um comentário"
                     value={newCommentText}
                     onChange={handleNewCommentChage}
+                    //onInvalid é um propriedade do react que diz quando o campo está vazio
+                    //vamos adicioanar a nova função de texto
+                    onInvalid={handleNewCommentInvalid}
+                    required
                 />
 
                 <footer>
-                    <button type="submit">Publicar</button>
+                    {/* caso não tenha nada o botão ficará desabilitado */}
+                    <button type="submit" disabled={isNewCommentEmpty}>Publicar</button>
                 </footer>
             </form>
             <div className={styles.commentList}>
